@@ -1,0 +1,38 @@
+name: Nightly Build
+
+on:
+  schedule:
+    - cron:  '0 0 * * *'
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    container: qmkfm/base_container
+
+    steps:
+    - name: Checkout build repo
+      uses: actions/checkout@v2
+
+    - name: Checkout qmk_firmware
+      uses: actions/checkout@v2
+      with:
+        submodules: recursive
+        repository: qmk/qmk_firmware
+        path: qmk_firmware
+
+    - name: Build
+      working-directory: qmk_firmware
+      env:
+        MAKEFLAGS: '-j3 --output-sync'
+      run: |
+        make all:via
+    - name: Copy
+      run: |
+        cp -f qmk_firmware/*.bin .
+        cp -f qmk_firmware/*.hex .
+    - name: Commit
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Nightly Build
