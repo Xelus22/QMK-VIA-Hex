@@ -27,6 +27,8 @@ jobs:
       env:
         MAKEFLAGS: '-j3 --output-sync'
       run: |
+        sed -i '350d' quantum/quantum_keycodes.h
+        sed -i '350 c\    MI_VEL_1 = MIDI_VELOCITY_MIN,' quantum/quantum_keycodes.h
         make all:via
     - name: Copy
       run: |
