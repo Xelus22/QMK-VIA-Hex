@@ -37,7 +37,12 @@ jobs:
       run: |
         cp -f qmk_firmware/*.bin .
         cp -f qmk_firmware/*.hex .
-        
+      
+    - name: Update Readme
+    shell: 'bash {0}'
+    run: |
+      echo -e "# VIA enabled QMK compiled HEX and BIN files\n\nThis has been compiled on $(git -C $PWD/qmk_firmware describe --abbrev=0 --tags)" > README.md
+
     - name: Commit
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
