@@ -21,19 +21,23 @@ jobs:
         submodules: recursive
         repository: qmk/qmk_firmware
         path: qmk_firmware
-
+    
+    - name: Revert MIDI_VELOCITY_MIN
+      run: |
+        sed -i '350d' quantum/quantum_keycodes.h
+        sed -i '350 c\    MI_VEL_1 = MIDI_VELOCITY_MIN,' quantum/quantum_keycodes.h     
     - name: Build
       working-directory: qmk_firmware
       env:
         MAKEFLAGS: '-j3 --output-sync'
       run: |
-        sed -i '350d' quantum/quantum_keycodes.h
-        sed -i '350 c\    MI_VEL_1 = MIDI_VELOCITY_MIN,' quantum/quantum_keycodes.h
         make all:via
+        
     - name: Copy
       run: |
         cp -f qmk_firmware/*.bin .
         cp -f qmk_firmware/*.hex .
+        
     - name: Commit
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
