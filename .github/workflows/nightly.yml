@@ -26,6 +26,7 @@ jobs:
       run: |
         sed -i '350d' qmk_firmware/quantum/quantum_keycodes.h
         sed -i '350 c\    MI_VEL_1 = MIDI_VELOCITY_MIN,' qmk_firmware/quantum/quantum_keycodes.h     
+        
     - name: Build
       working-directory: qmk_firmware
       env:
@@ -39,7 +40,6 @@ jobs:
         cp -f qmk_firmware/*.hex .
       
     - name: Update Readme
-      shell: 'bash'
       run: |
         echo -e "# VIA enabled QMK compiled HEX and BIN files\n\nThis has been compiled on $(git -C $PWD/qmk_firmware describe --abbrev=0 --tags)" > README.md
 
