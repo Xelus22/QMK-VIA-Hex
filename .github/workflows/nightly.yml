@@ -39,7 +39,7 @@ jobs:
         cp -f qmk_firmware/*.hex .
       
     - name: Update Readme
-      shell: 'bash {0}'
+      shell: 'bash'
       run: |
         echo -e "# VIA enabled QMK compiled HEX and BIN files\n\nThis has been compiled on $(git -C $PWD/qmk_firmware describe --abbrev=0 --tags)" > README.md
 
