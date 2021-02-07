@@ -25,6 +25,8 @@ jobs:
     - name: obtain all tags
       uses: actions/checkout@v2
       with:
+        repository: qmk/qmk_firmware
+        path: qmk_firmware
         fetch-depth: 0
     
     - name: Revert MIDI_VELOCITY_MIN
