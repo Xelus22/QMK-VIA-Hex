@@ -38,6 +38,10 @@ jobs:
       run: |
         find . -name ".noci" -type f -delete
         
+    - name: ARM GCC version
+      run: |
+        arm-none-eabi-gcc --version
+        
     - name: Build
       working-directory: qmk_firmware
       env:
