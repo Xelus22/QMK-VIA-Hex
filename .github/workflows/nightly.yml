@@ -33,6 +33,10 @@ jobs:
       run: |
         sed -i '350d' qmk_firmware/quantum/quantum_keycodes.h
         sed -i '350 c\    MI_VEL_1 = MIDI_VELOCITY_MIN,' qmk_firmware/quantum/quantum_keycodes.h     
+      
+    - name: Remove ".noci"
+      run: |
+        find . -name ".noci" -type f -delete
         
     - name: Build
       working-directory: qmk_firmware
