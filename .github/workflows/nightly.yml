@@ -10,8 +10,12 @@ jobs:
     runs-on: ubuntu-20.04
     
     container: qmkfm/base_container
-
+    
     steps:
+    - name: upgrade ARM GCC
+      run: |
+        wget -q https://developer.arm.com/-/media/Files/downloads/gnu-rm/10-2020q4/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2 -O - | tar xj --strip-components=1 -C / && rm -rf /arm-none-eabi/share/ /share/
+        
     - name: Checkout build repo
       uses: actions/checkout@v2
 
@@ -37,10 +41,6 @@ jobs:
     - name: Remove ".noci"
       run: |
         find . -name ".noci" -type f -delete
-        
-    - name: upgrade ARM GCC
-      run: |
-        set -o pipefail && wget -q https://developer.arm.com/-/media/Files/downloads/gnu-rm/10-2020q4/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2 -O - | tar xj --strip-components=1 -C / && rm -rf /arm-none-eabi/share/ /share/
         
     - name: ARM GCC version
       run: |
