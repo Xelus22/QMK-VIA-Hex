@@ -14,7 +14,7 @@ jobs:
     steps:
     - name: upgrade ARM GCC
       run: |
-        wget -q https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2 -O - | tar xj --strip-components=1 -C / && rm -rf /arm-none-eabi/share/ /share/
+        wget -q https://developer.arm.com/-/media/Files/downloads/gnu-rm/8-2019q3/RC1.1/gcc-arm-none-eabi-8-2019-q3-update-linux.tar.bz2 -O - | tar xj --strip-components=1 -C / && rm -rf /arm-none-eabi/share/ /share/
         
     - name: Checkout build repo
       uses: actions/checkout@v2
@@ -51,7 +51,7 @@ jobs:
       env:
         MAKEFLAGS: '-j3 --output-sync'
       run: |
-        make all:via
+        make all:via || true
         
     - name: Copy
       run: |
