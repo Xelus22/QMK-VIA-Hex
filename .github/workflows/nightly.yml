@@ -35,8 +35,8 @@ jobs:
     
     - name: Revert MIDI_VELOCITY_MIN
       run: |
-        sed -i '343d' qmk_firmware/quantum/quantum_keycodes.h
-        sed -i '343 c\    MI_VEL_1 = MIDI_VELOCITY_MIN,' qmk_firmware/quantum/quantum_keycodes.h     
+        sed -i '341d' qmk_firmware/quantum/quantum_keycodes.h
+        sed -i '341 c\    MI_VEL_1 = MIDI_VELOCITY_MIN,' qmk_firmware/quantum/quantum_keycodes.h     
       
     - name: Remove ".noci"
       run: |
