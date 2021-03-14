@@ -37,6 +37,10 @@ jobs:
       run: |
         sed -i '334d' qmk_firmware/quantum/quantum_keycodes.h
         sed -i '334 c\    MI_VEL_1 = MIDI_VELOCITY_MIN,' qmk_firmware/quantum/quantum_keycodes.h     
+        
+    - name: Remove Sirius/uni660
+      run: |
+        rm -r qmk_firmware/keyboards/sirius/uni660   
       
     - name: Remove ".noci"
       run: |
@@ -51,7 +55,7 @@ jobs:
       env:
         MAKEFLAGS: '-j3 --output-sync'
       run: |
-        make all:via || true
+        make all:via
         
     - name: Copy
       run: |
