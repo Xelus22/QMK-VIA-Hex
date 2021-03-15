@@ -33,10 +33,11 @@ jobs:
         path: qmk_firmware
         fetch-depth: 0
     
-    - name: Revert MIDI_VELOCITY_MIN
-      run: |
-        sed -i '334d' qmk_firmware/quantum/quantum_keycodes.h
-        sed -i '334 c\    MI_VEL_1 = MIDI_VELOCITY_MIN,' qmk_firmware/quantum/quantum_keycodes.h     
+#     - name: Revert MIDI_VELOCITY_MIN
+#      run: |
+#        sed -i '334d' qmk_firmware/quantum/quantum_keycodes.h
+#        sed -i '334 c\    MI_VEL_1 = MIDI_VELOCITY_MIN,' qmk_firmware/quantum/quantum_keycodes.h     
+    
         
     - name: Remove Sirius/uni660
       run: |
