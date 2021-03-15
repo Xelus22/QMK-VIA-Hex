@@ -42,6 +42,18 @@ jobs:
     - name: Remove Sirius/uni660
       run: |
         rm -r qmk_firmware/keyboards/sirius/uni660   
+        
+    - name: Add define VIA_HAS_BROKEN_KEYCODES
+      run: |
+        directory="qmk_firmware/keyboards"
+        for dir in $(ls -d ${directory}/*/); do
+            if [ -d "${dir}keymaps/via" ]; then
+                if grep -l "BLUETOOTH =" "${dir}rules.mk"; then
+                    echo "#define VIA_HAS_BROKEN_KEYCODES" >> "${dir}config.h"
+                fi
+            fi
+        done
+      shell: bash
       
     - name: Remove ".noci"
       run: |
