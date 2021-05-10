@@ -50,7 +50,7 @@ jobs:
         
     - name: Remove Sirius/uni660
       run: |
-        rm -r qmk_firmware/keyboards/sirius/uni660   
+        rm -r qmk_firmware/keyboards/sirius/uni660
         
     - name: Add define VIA_HAS_BROKEN_KEYCODES
       run: |
@@ -77,7 +77,7 @@ jobs:
       env:
         MAKEFLAGS: '-j3 --output-sync'
       run: |
-        make all:via
+        make all:via -j
         
     - name: Copy
       run: |
