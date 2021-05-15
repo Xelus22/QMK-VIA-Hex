@@ -79,6 +79,7 @@ jobs:
       
     - name: AVR GCC version
       run: |
+        which avr-gcc
         avr-gcc --version
         
     - name: Build
