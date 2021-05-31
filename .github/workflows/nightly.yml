@@ -33,7 +33,7 @@ jobs:
         echo $PATH
         ls /usr/local/sbin
         echo $PATH
-        ls /usr/local/sbin/avr/bin
+
         
     
     - name: Checkout build repo
