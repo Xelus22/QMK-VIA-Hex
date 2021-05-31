@@ -21,14 +21,10 @@ jobs:
     container: qmkfm/base_container
     
     steps:
-    - name: check AVR GCC
+    - name: install libfl2
       run: |
         apt-get update
         apt-get install --no-install-recommends -y libfl2
-        which avr-gcc
-        ls -la /usr/bin
-        echo $PATH
-        ls -la /usr/bin/avr-gcc
       
     - name: upgrade ARM GCC
       run: |
@@ -100,7 +96,6 @@ jobs:
         echo $PATH
         which avr-gcc
         avr-gcc --version
-        make ai03/polaris:via
         make all:via -j
         
     - name: Copy
