@@ -31,6 +31,7 @@ jobs:
         pwd
         echo $PATH
         ls /usr/local/sbin
+        ls /usr/local/sbin/avr
     
     - name: Checkout build repo
       uses: actions/checkout@v2
