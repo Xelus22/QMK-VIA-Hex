@@ -27,10 +27,7 @@ jobs:
         
     - name: upgrade AVR GCC
       run: |
-        wget -q https://blog.zakkemble.net/download/avr-gcc-8.3.0-x64-linux.tar.bz2 -O - | tee /tmp/asdf.tar.bz2
-        tar xfj /tmp/asdf.tar.bz2 --strip-components=1 -C /
-        rm -rf /share/ /tmp/*
-    
+        wget -q https://blog.zakkemble.net/download/avr-gcc-8.3.0-x64-linux.tar.bz2 -O - | tar xfj /tmp/asdf.tar.bz2 --strip-components=1 -C / && rm -rf /share/ /tmp/*
     
     - name: Checkout build repo
       uses: actions/checkout@v2
@@ -77,6 +74,7 @@ jobs:
         
     - name: ARM GCC version
       run: |
+        which arm-none-eabi-gcc
         arm-none-eabi-gcc --version
       
     - name: AVR GCC version
