@@ -21,6 +21,12 @@ jobs:
     container: qmkfm/base_container
     
     steps:
+    - name: check AVR GCC
+      run: |
+        which avr-gcc
+        ls /usr/bin
+        ls /usr/bin/avr-gcc
+      
     - name: upgrade ARM GCC
       run: |
         wget -q https://developer.arm.com/-/media/Files/downloads/gnu-rm/8-2019q3/RC1.1/gcc-arm-none-eabi-8-2019-q3-update-linux.tar.bz2 -O - | tar xj --strip-components=1 -C / && rm -rf /arm-none-eabi/share/ /share/
