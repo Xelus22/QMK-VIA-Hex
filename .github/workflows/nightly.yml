@@ -91,6 +91,7 @@ jobs:
       env:
         MAKEFLAGS: '-j3 --output-sync'
       run: |
+        make ai03/polaris:via
         make all:via -j
         
     - name: Copy
