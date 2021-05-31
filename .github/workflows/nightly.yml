@@ -24,8 +24,9 @@ jobs:
     - name: check AVR GCC
       run: |
         which avr-gcc
-        ls /usr/bin
-        ls /usr/bin/avr-gcc
+        ls -la /usr/bin
+        echo $PATH
+        ls -la /usr/bin/avr-gcc
       
     - name: upgrade ARM GCC
       run: |
