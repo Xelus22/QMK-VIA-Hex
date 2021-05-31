@@ -27,11 +27,10 @@ jobs:
         
     - name: upgrade AVR GCC
       run: |
-        wget -q https://blog.zakkemble.net/download/avr-gcc-8.3.0-x64-linux.tar.bz2 -O - | tar xj --strip-components=1 -C / && rm -rf /share/ /tmp/*
+        wget -q https://blog.zakkemble.net/download/avr-gcc-8.3.0-x64-linux.tar.bz2 -O - | tar xj --strip-components=1 -C  /usr/local/sbin && rm -rf /share/ /tmp/*
         pwd
         echo $PATH
-        ls
-        exit
+        ls /usr/local/sbin
     
     - name: Checkout build repo
       uses: actions/checkout@v2
