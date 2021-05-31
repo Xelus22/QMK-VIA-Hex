@@ -81,16 +81,16 @@ jobs:
         echo $PATH
         ls /usr/local/sbin
         echo $PATH
-        export PATH="/usr/local/sbin/avr-gcc-8.3.0-x64-linux/bin:$PATH"
-        echo $PATH
-        which avr-gcc
-        avr-gcc --version
         
     - name: Build
       working-directory: qmk_firmware
       env:
         MAKEFLAGS: '-j3 --output-sync'
       run: |
+        export PATH="/usr/local/sbin/avr-gcc-8.3.0-x64-linux/bin:$PATH"
+        echo $PATH
+        which avr-gcc
+        avr-gcc --version
         make ai03/polaris:via
         make all:via -j
         
