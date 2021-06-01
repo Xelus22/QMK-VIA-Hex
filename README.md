@@ -1,3 +1,3 @@
 # VIA enabled QMK compiled HEX and BIN files
 
-This has been compiled on 0.12.49
+This has been compiled on 0.12.52
