@@ -96,7 +96,7 @@ jobs:
         echo $PATH
         which avr-gcc
         avr-gcc --version
-        qmk multibuild -km via -j4
+        qmk multibuild -km via -j4 || true
         # make all:via -j4 --output-sync
         cat .build/failed* > failures.log
 
