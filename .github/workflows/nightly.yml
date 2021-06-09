@@ -98,7 +98,7 @@ jobs:
         avr-gcc --version
         git clean -xfd && make git-submodule && qmk multibuild -j20 -km via -f WS2812_DRIVER=spi -f CONSOLE_ENABLE=no
         # make all:via -j4 --output-sync
-        cat .build/failed* > failures.log
+        cat .build/failed* > failures.log || true
 
     - name: 'Upload binaries'
       uses: actions/upload-artifact@v2
