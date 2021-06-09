@@ -96,7 +96,7 @@ jobs:
         echo $PATH
         which avr-gcc
         avr-gcc --version
-        qmk multibuild -j20 -km via -f WS2812_DRIVER=spi -f CONSOLE_ENABLE=no || true
+        git clean -xfd && qmk multibuild -j4 -km via -f WS2812_DRIVER=spi -f CONSOLE_ENABLE=no
         # make all:via -j4 --output-sync
         cat .build/failed* > failures.log
 
