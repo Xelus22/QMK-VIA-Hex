@@ -89,8 +89,8 @@ jobs:
         
     - name: Build
       working-directory: qmk_firmware
-      env:
-        MAKEFLAGS: '-j3 --output-sync'
+      #env:
+      #  MAKEFLAGS: '-j3 --output-sync'
       run: |
         export PATH="/usr/local/sbin/avr-gcc-8.3.0-x64-linux/bin:$PATH"
         echo $PATH
