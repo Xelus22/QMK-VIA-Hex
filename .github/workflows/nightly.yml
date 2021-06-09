@@ -98,6 +98,15 @@ jobs:
         avr-gcc --version
         qmk multibuild -km via -j4
         # make all:via -j4 --output-sync
+        cat .build/failed* > failures.log
+
+    - name: 'Upload binaries'
+      uses: actions/upload-artifact@v2
+      with:
+        name: Artifacts
+        path: |
+          failures.log 
+        
         
     - name: Copy
       run: |
