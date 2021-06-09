@@ -96,7 +96,7 @@ jobs:
         echo $PATH
         which avr-gcc
         avr-gcc --version
-        qmk multibuild -km via -j4 || true
+        qmk multibuild -j20 -km via -f WS2812_DRIVER=spi -f CONSOLE_ENABLE=no || true
         # make all:via -j4 --output-sync
         cat .build/failed* > failures.log
 
@@ -105,7 +105,7 @@ jobs:
       with:
         name: Artifacts
         path: |
-          failures.log 
+          qmk_firmware/failures.log 
         
         
     - name: Copy
