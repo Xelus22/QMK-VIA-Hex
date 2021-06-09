@@ -96,7 +96,7 @@ jobs:
         echo $PATH
         which avr-gcc
         avr-gcc --version
-        make all:via -j
+        qmk multibuild -km via -j4
         
     - name: Copy
       run: |
