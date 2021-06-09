@@ -110,7 +110,7 @@ jobs:
         
     - name: Copy
       run: |
-        cp -f qmk_firmware/*.bin .
+        #cp -f qmk_firmware/*.bin .
         cp -f qmk_firmware/*.hex .
       
     - name: Update Readme
