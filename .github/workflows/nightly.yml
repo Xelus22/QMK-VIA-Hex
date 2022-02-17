@@ -96,7 +96,7 @@ jobs:
         echo $PATH
         which avr-gcc
         avr-gcc --version
-        git clean -xfd && make git-submodule && qmk multibuild -j4 -km via
+        git clean -xfd && make git-submodule && qmk multibuild -j4 -km via || true
         # make all:via -j4 --output-sync
         cat .build/failed* > failures.log || true
 
@@ -107,10 +107,15 @@ jobs:
         path: |
           qmk_firmware/failures.log 
         
-    - name: Copy
+    - name: Sort output
+      shell: bash
       run: |
-        cp -f qmk_firmware/*.bin .
-        cp -f qmk_firmware/*.hex .
+        for file in qmk_firmware/*.hex qmk_firmware/*.bin; do
+          DIR=$(echo $(basename "$file")|cut -d'_' -f1)
+          mkdir -p "$DIR"
+          mv "$file" "$DIR/"
+        done
+        echo "Build on `date -u`" > README.md
       
     - name: Update Readme
       shell: bash "{0}"
