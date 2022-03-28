@@ -30,14 +30,14 @@ jobs:
       run: |
         wget -q https://developer.arm.com/-/media/Files/downloads/gnu-rm/8-2019q3/RC1.1/gcc-arm-none-eabi-8-2019-q3-update-linux.tar.bz2 -O - | tar xj --strip-components=1 -C / && rm -rf /arm-none-eabi/share/ /share/
         
-    - name: upgrade AVR GCC
-      run: |
-        wget -q https://blog.zakkemble.net/download/avr-gcc-8.3.0-x64-linux.tar.bz2
-        tar xjf avr-gcc-8.3.0-x64-linux.tar.bz2 -C /usr/local/sbin
-        pwd
-        echo $PATH
-        ls /usr/local/sbin
-        echo $PATH
+    #- name: upgrade AVR GCC
+    #  run: |
+    #    wget -q https://blog.zakkemble.net/download/avr-gcc-8.3.0-x64-linux.tar.bz2
+    #    tar xjf avr-gcc-8.3.0-x64-linux.tar.bz2 -C /usr/local/sbin
+    #    pwd
+    #    echo $PATH
+    #    ls /usr/local/sbin
+    #    echo $PATH
     
     - name: Checkout build repo
       uses: actions/checkout@v2
