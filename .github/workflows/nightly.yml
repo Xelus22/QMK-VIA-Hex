@@ -87,6 +87,10 @@ jobs:
         which arm-none-eabi-gcc
         arm-none-eabi-gcc --version
         
+    - name: Install Python QMK
+      run: |
+        python3 -m pip install qmk
+        
     - name: Build
       working-directory: qmk_firmware
       #env:
