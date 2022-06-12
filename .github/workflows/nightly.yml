@@ -18,26 +18,13 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     
-    container: qmkfm/base_container
+    container: qmkfm/qmk_cli
     
     steps:
     - name: install libfl2
       run: |
         apt-get update
         apt-get install --no-install-recommends -y libfl2
-      
-    - name: upgrade ARM GCC
-      run: |
-        wget -q https://developer.arm.com/-/media/Files/downloads/gnu-rm/8-2019q3/RC1.1/gcc-arm-none-eabi-8-2019-q3-update-linux.tar.bz2 -O - | tar xj --strip-components=1 -C / && rm -rf /arm-none-eabi/share/ /share/
-        
-    - name: upgrade AVR GCC
-      run: |
-        wget -q https://github.com/ZakKemble/avr-gcc-build/releases/download/v8.3.0-1/avr-gcc-8.3.0-x64-linux.tar.bz2
-        tar xjf avr-gcc-8.3.0-x64-linux.tar.bz2 -C /usr/local/sbin
-        pwd
-        echo $PATH
-        ls /usr/local/sbin
-        echo $PATH
     
     - name: Checkout build repo
       uses: actions/checkout@v2
@@ -54,13 +41,7 @@ jobs:
       with:
         repository: qmk/qmk_firmware
         path: qmk_firmware
-        fetch-depth: 0
-    
-#     - name: Revert MIDI_VELOCITY_MIN
-#      run: |
-#        sed -i '334d' qmk_firmware/quantum/quantum_keycodes.h
-#        sed -i '334 c\    MI_VEL_1 = MIDI_VELOCITY_MIN,' qmk_firmware/quantum/quantum_keycodes.h     
-    
+        fetch-depth: 0    
         
     - name: Remove Sirius/uni660
       run: |
@@ -86,10 +67,6 @@ jobs:
       run: |
         which arm-none-eabi-gcc
         arm-none-eabi-gcc --version
-        
-    - name: Install Python QMK
-      run: |
-        python3 -m pip install qmk
         
     - name: Build
       working-directory: qmk_firmware
