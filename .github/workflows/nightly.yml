@@ -20,12 +20,7 @@ jobs:
     
     container: qmkfm/qmk_cli
     
-    steps:
-    - name: install libfl2
-      run: |
-        apt-get update
-        apt-get install --no-install-recommends -y libfl2
-    
+    steps:  
     - name: Checkout build repo
       uses: actions/checkout@v2
 
@@ -41,23 +36,7 @@ jobs:
       with:
         repository: qmk/qmk_firmware
         path: qmk_firmware
-        fetch-depth: 0    
-        
-    - name: Remove Sirius/uni660
-      run: |
-        rm -r qmk_firmware/keyboards/sirius/uni660
-        
-    - name: Add define VIA_HAS_BROKEN_KEYCODES
-      run: |
-        directory="qmk_firmware/keyboards"
-        for dir in $(ls -d ${directory}/*/); do
-            if [ -d "${dir}keymaps/via" ]; then
-                if grep -l "BLUETOOTH =" "${dir}rules.mk"; then
-                    echo "#define VIA_HAS_BROKEN_KEYCODES" >> "${dir}config.h"
-                fi
-            fi
-        done
-      shell: bash
+        fetch-depth: 0
       
     - name: Remove ".noci"
       run: |
@@ -105,7 +84,6 @@ jobs:
 
     - name: Add safe directory
       run: git config --global --add safe.directory /__w/QMK-VIA-Hex/QMK-VIA-Hex
-
 
     - name: Commit
       uses: stefanzweifel/git-auto-commit-action@v4
