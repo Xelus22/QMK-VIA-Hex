@@ -103,6 +103,10 @@ jobs:
       run: |
         echo -e "# VIA enabled QMK compiled HEX and BIN files\n\nThis has been compiled on $(git -C $PWD/qmk_firmware describe --abbrev=0 --tags)" > README.md
 
+    - name: Add safe directory
+      run: git config --global --add safe.directory /__w/QMK-VIA-Hex/QMK-VIA-Hex
+
+
     - name: Commit
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
