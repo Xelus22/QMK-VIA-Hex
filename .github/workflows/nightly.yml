@@ -77,7 +77,7 @@ jobs:
         echo $PATH
         which avr-gcc
         avr-gcc --version
-        git clean -xfd && make git-submodule && qmk multibuild -j3 -km via || true
+        git clean -xfd && make git-submodule && qmk mass-compile -j3 -km via || true
         # make all:via -j4 --output-sync
         cat .build/failed* > failures.log || true
 
