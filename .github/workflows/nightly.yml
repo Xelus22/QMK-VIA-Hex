@@ -42,22 +42,14 @@ jobs:
       run: |
         find . -name ".noci" -type f -delete
         
-    - name: ARM GCC version
-      run: |
-        which arm-none-eabi-gcc
-        arm-none-eabi-gcc --version
-        
     - name: Build
       working-directory: qmk_firmware
       #env:
       #  MAKEFLAGS: '-j3 --output-sync'
       run: |
-        export PATH="/usr/local/sbin/avr-gcc-8.3.0-x64-linux/bin:$PATH"
-        echo $PATH
-        which avr-gcc
-        avr-gcc --version
-        git clean -xfd && make git-submodule && qmk mass-compile -j3 -km via || true
-        # make all:via -j4 --output-sync
+        git clean -xfd 
+        make git-submodule 
+        qmk mass-compile -j3 -km via || true
         cat .build/failed* > failures.log || true
 
     - name: 'Upload binaries'
