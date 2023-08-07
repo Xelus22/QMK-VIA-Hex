@@ -62,7 +62,7 @@ jobs:
     - name: Sort output
       shell: bash
       run: |
-        for file in qmk_firmware/*.hex qmk_firmware/*.bin; do
+        for file in qmk_firmware/*.hex qmk_firmware/*.bin qmk_firmware/*.uf2; do
           DIR=$(echo $(basename "$file")|cut -d'_' -f1)
           mkdir -p "$DIR"
           mv "$file" "$DIR/"
